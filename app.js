@@ -18,5 +18,42 @@ server.post('/api/messages', connector.listen());
 
 // Receive messages from the user and respond by echoing each message back (prefixed with 'You said:')
 var bot = new builder.UniversalBot(connector, function (session) {
-    session.send("You said: %s", session.message.text);
+
+    var http = require("https");
+
+    var options = {
+        "method": "GET",
+        "hostname": "dev45250.service-now.com",
+        "port": null,
+        "path": "/api/now/table/sc_req_item?sysparm_query=active%3Dtrue&sysparm_display_value=true&sysparm_exclude_reference_link=true&sysparm_fields=number%2Csys_updated_on%2Ccat_item%2Copened_by%2Cstate",
+        "headers": {
+            "authorization": "Basic d2VidXNlcjpzaW11bGFANDYx",
+            "content-type": "application/json",
+            "cache-control": "no-cache",
+            "accept": "application/json",
+            "postman-token": "e23b7736-4e12-de9f-9010-2576989194ae"
+        }
+    };
+   
+    var req = http.request(options, function (res) {
+        var chunks = [];
+
+        res.on("data", function (chunk) {
+            chunks.push(chunk);
+        });
+
+        res.on("end", function () {
+            var body = Buffer.concat(chunks);
+           var resbody = body.toString();
+            resbody = JSON.parse(resbody);
+            session.send("Request Number: %s", resbody.result[0].number);
+            console.log(resbody.result[0].number);
+        });
+    });
+
+    req.end();
+   // session.send("Request NUmber: %s", session.message.text);
+    //session.send("Request NUmber: %s", resbody.result.number);
+    
 });
+
