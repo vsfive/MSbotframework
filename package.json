@@ -1,0 +1,24 @@
+{
+  "name": "servicenow",
+  "version": "1.0.0",
+  "description": "",
+  "dependencies": {
+    "botbuilder": "^3.10.1",
+    "dependencieName": "version",
+    "restify": "^6.0.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "scriptName": "path/to/script"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vsfive/MSbotframework"
+  },
+  "keywords": [],
+  "author": "Vinit Shandilya",
+  "license": "",
+  "bugs": {
+    "url": ""
+  }
+}
