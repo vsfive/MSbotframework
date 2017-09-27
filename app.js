@@ -43,10 +43,14 @@ var bot = new builder.UniversalBot(connector, function (session) {
         });
 
         res.on("end", function () {
+            var datetime = require('node-datetime');
+            var dateTime = require('node-datetime');
+            var dt = dateTime.create();
+            var formatted = dt.format('Y-m-d H:M:S');
             var body = Buffer.concat(chunks);
            var resbody = body.toString();
             resbody = JSON.parse(resbody);
-            session.send("Request Number: %s", resbody.result[0].number);
+            session.send(formatted +"  "+"Request Number: %s", resbody.result[0].number);
             console.log(resbody.result[0].number);
         });
     });
