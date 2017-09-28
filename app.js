@@ -24,11 +24,15 @@ var bot = new builder.UniversalBot(connector, [
             .inputHint(builder.InputHint.acceptingInput);
         session.send(msg);
 
-        builder.Prompts.text(session, 'text based prompt', {
-            speak: 'do you what the ticket status?',
-            retrySpeak: 'do you what the ticket status?',
+        session.say('Hi there', 'do you what the ticket status?', {
             inputHint: builder.InputHint.expectingInput
         });
+
+      /*  builder.Prompts.text(session, 'text based prompt', {
+            speak: '',
+            retrySpeak: 'do you what the ticket status?',
+            inputHint: builder.InputHint.expectingInput
+        });*/
        // builder.Prompts.text(session, "do you what the ticket status?");
     },
     
