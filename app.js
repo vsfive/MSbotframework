@@ -25,7 +25,7 @@ var bot = new builder.UniversalBot(connector, [
         session.send(msg);
     },
     
-    function (session) {
+    function (session, results) {
 
 
 
