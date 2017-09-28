@@ -19,6 +19,12 @@ server.post('/api/messages', connector.listen());
 // Receive messages from the user and respond by echoing each message back (prefixed with 'You said:')
 var bot = new builder.UniversalBot(connector, function (session) {
 
+
+    var msg = new builder.Message(session)
+        .speak('Welcome to servicenow, how can I help you today?')
+        .inputHint(builder.InputHint.acceptingInput);
+    session.send(msg).endDialog();
+
     var http = require("https");
 
     var options = {
