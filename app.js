@@ -23,12 +23,13 @@ var bot = new builder.UniversalBot(connector, [
             .speak('Welcome to service now, how can I help you today?')
             .inputHint(builder.InputHint.acceptingInput);
         session.send(msg);
+        builder.Prompts.text(session, "do you what the ticket status?");
     },
     
     function (session, results) {
 
 
-
+        session.send('hello');
 
         var http = require("https");
 
@@ -61,13 +62,13 @@ var bot = new builder.UniversalBot(connector, [
                 var body = Buffer.concat(chunks);
                 var resbody = body.toString();
                 resbody = JSON.parse(resbody);
-
+                session.send(formatted + "  " + "Request Number: %s", resbody.result[0].number);
                 var msg2 = new builder.Message(session)
                     .speak('Request Number is ' + resbody.result[0].number)
                     .inputHint(builder.InputHint.acceptingInput);
                 session.send(msg2);
-                session.endDialog();
-                //   session.send(formatted +"  "+"Request Number: %s", resbody.result[0].number);
+                
+               session.send(formatted +"  "+"Request Number: %s", resbody.result[0].number);
                 console.log(resbody.result[0].number);
             });
         });
@@ -76,7 +77,7 @@ var bot = new builder.UniversalBot(connector, [
         // session.send("Request NUmber: %s", session.message.text);
         //session.send("Request NUmber: %s", resbody.result.number);
 
-    }
+        session.endDialog();}
     
 ]);
 
