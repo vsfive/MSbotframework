@@ -55,8 +55,13 @@ var bot = new builder.UniversalBot(connector, function (session) {
             var formatted = dt.format('Y-m-d H:M:S');
             var body = Buffer.concat(chunks);
            var resbody = body.toString();
-            resbody = JSON.parse(resbody);
-            session.send(formatted +"  "+"Request Number: %s", resbody.result[0].number);
+           resbody = JSON.parse(resbody);
+
+           var msg2 = new builder.Message(session)
+               .speak('Request Number is ' + resbody.result[0].number)
+               .inputHint(builder.InputHint.acceptingInput);
+           session.send(msg2);
+         //   session.send(formatted +"  "+"Request Number: %s", resbody.result[0].number);
             console.log(resbody.result[0].number);
         });
     });
