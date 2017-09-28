@@ -21,7 +21,7 @@ var bot = new builder.UniversalBot(connector, function (session) {
 
 
     var msg = new builder.Message(session)
-        .speak('Welcome to servicenow, how can I help you today?')
+        .speak('Welcome to service now, how can I help you today?')
         .inputHint(builder.InputHint.acceptingInput);
     session.send(msg).endDialog();
 
