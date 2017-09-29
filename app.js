@@ -39,7 +39,7 @@ var bot = new builder.UniversalBot(connector, [
     function (session, results) {
 
 
-        session.say('hello');
+        session.say('hello','hellooooo');
 
         //var http = require("https");
 
